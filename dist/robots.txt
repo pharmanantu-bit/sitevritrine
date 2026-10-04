@@ -1,0 +1,41 @@
+# Tous les robots sont autorisés, y compris ceux des assistants IA (recherche et réponses).
+# Pour refuser l'entraînement des modèles tout en restant cité dans les réponses,
+# remplacer 'Allow: /' par 'Disallow: /' pour GPTBot, ClaudeBot et Google-Extended uniquement.
+
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://www.VOTRE-DOMAINE.fr/sitemap.xml

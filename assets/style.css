@@ -1,0 +1,168 @@
+/* Pharmacie de Nanterre Université
+   Palette extraite du logo : lime #ccfd04, vert forêt #133223.
+   Règle de contraste : le lime sert de fond, le vert forêt de texte. Jamais l'inverse sur fond clair. */
+
+:root{
+  --lime:#ccfd04;
+  --forest:#133223;
+  --leaf:#2d5a43;
+  --paper:#fbfdf5;
+  --mint:#eef5e0;
+  --line:#cfdcc0;
+  --muted:#41584b;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","Roboto Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --w:72rem;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;font:1.0625rem/1.65 var(--sans);color:var(--forest);background:var(--paper);padding-bottom:4.25rem}
+@media (min-width:900px){body{padding-bottom:0}}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--forest);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{background:var(--lime)}
+:focus-visible{outline:3px solid var(--forest);outline-offset:3px;border-radius:2px}
+.sec--forest :focus-visible,.foot :focus-visible,.strip :focus-visible,.dock :focus-visible{outline-color:var(--lime)}
+
+.skip{position:absolute;left:-999px;top:0;background:var(--forest);color:#fff;padding:.75rem 1rem;z-index:100}
+.skip:focus{left:0}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 1.25rem}
+
+h1,h2,h3{font-family:var(--mono);line-height:1.15;letter-spacing:-.02em;margin:0 0 .6em;font-weight:700}
+h1{font-size:clamp(1.8rem,6vw,3.2rem)}
+h2{font-size:clamp(1.4rem,3.6vw,2.1rem)}
+h3{font-size:1.15rem;letter-spacing:-.01em}
+p{margin:0 0 1em;max-width:68ch}
+ul{padding-left:1.2rem}
+.lede{font-size:1.2rem;max-width:40rem}
+.answer{font-size:1.15rem;max-width:46rem}
+small,.small{font-size:.9rem}
+
+/* En-tête */
+.top{background:var(--paper);border-bottom:2px solid var(--forest)}
+.top__in{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 2rem;padding-top:.75rem;padding-bottom:.5rem}
+.brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;font-family:var(--mono);font-weight:700;line-height:1.15;font-size:.95rem}
+.brand:hover{background:none}
+.brand img{border-radius:6px}
+.top nav{display:flex;gap:.25rem 1.25rem;overflow-x:auto;flex:1 1 100%;padding-bottom:.25rem}
+@media (min-width:900px){.top nav{flex:1 1 auto;justify-content:flex-end;overflow:visible}}
+.top nav a{font-family:var(--mono);font-weight:600;font-size:.95rem;text-decoration:none;padding:.4rem .15rem;white-space:nowrap;border-bottom:3px solid transparent}
+.top nav a:hover{background:none;border-color:var(--forest)}
+.top nav a[aria-current=page]{background:var(--lime);border-color:var(--forest)}
+
+/* Boutons */
+.btn{display:inline-block;font-family:var(--mono);font-weight:700;font-size:1rem;text-decoration:none;padding:.8rem 1.15rem;border:2px solid var(--forest);border-radius:4px;line-height:1.2;min-height:44px;cursor:pointer}
+.btn--solid{background:var(--forest);color:var(--lime)}
+.btn--solid:hover{background:var(--leaf);color:#fff}
+.btn--line{background:transparent;color:var(--forest)}
+.btn--line:hover{background:var(--forest);color:var(--lime)}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}
+
+/* Accueil : bandeau lime, le logo (fond identique) s'y fond */
+.hero{background:var(--lime)}
+.hero__in{display:grid;gap:1.5rem;align-items:center;padding-top:2.5rem;padding-bottom:2.5rem}
+@media (min-width:860px){.hero__in{grid-template-columns:1.45fr .8fr;padding-top:3.5rem;padding-bottom:3.5rem}}
+.hero h1{text-transform:uppercase;letter-spacing:-.03em}
+.hero__logo{width:min(100%,26rem);justify-self:center}
+.hero .btn--line:hover{color:var(--lime)}
+
+.strip{background:var(--forest);color:#eef6dc}
+.strip dl{display:grid;gap:1rem 2rem;margin:0;padding:1.5rem 0}
+@media (min-width:760px){.strip dl{grid-template-columns:repeat(3,1fr)}}
+.strip dt{font-family:var(--mono);font-weight:700;color:var(--lime)}
+.strip dd{margin:0}
+.strip a{color:#fff}
+.strip a:hover{background:var(--lime);color:var(--forest)}
+
+/* Sections */
+.sec{padding:3rem 0}
+@media (min-width:900px){.sec{padding:4.5rem 0}}
+.sec--tint{background:var(--mint)}
+.sec--forest{background:var(--forest);color:#eef6dc}
+.sec--forest h2{color:var(--lime)}
+.sec--forest h3{color:#fff}
+.sec--forest a{color:var(--lime)}
+.sec--forest a:hover{background:var(--lime);color:var(--forest)}
+.sec--forest .btn--solid{background:var(--lime);color:var(--forest);border-color:var(--lime)}
+.sec--forest .btn--solid:hover{background:#fff;color:var(--forest)}
+.sec--forest .btn--line{border-color:var(--lime);color:var(--lime)}
+.sec--forest .btn--line:hover{background:var(--lime);color:var(--forest)}
+
+/* Echo des bandes du logo */
+.stripes{height:22px;background:repeating-linear-gradient(to bottom,var(--forest) 0 4px,transparent 4px 11px)}
+.pagehead{background:var(--lime);padding-top:2rem}
+.pagehead h1{max-width:24ch}
+.pagehead .lede{margin-bottom:1.75rem}
+.crumbs{font-size:.9rem;margin-bottom:1rem}
+.crumbs a{color:var(--forest)}
+.crumbs a:hover{background:var(--forest);color:var(--lime)}
+
+/* Listes de services et blocs */
+.svc{display:grid;gap:2rem 2.5rem;margin:1.5rem 0 0;padding:0;list-style:none}
+@media (min-width:700px){.svc{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.svc{grid-template-columns:repeat(3,1fr)}}
+.svc li{border-top:3px solid var(--forest);padding-top:.9rem}
+.sec--forest .svc li{border-top-color:var(--lime)}
+.svc h3{margin-bottom:.4em}
+.svc p{margin-bottom:.6em}
+
+.prose{max-width:50rem}
+.prose h2{margin-top:2.4rem}
+.prose h2:first-child{margin-top:0}
+.prose li{margin-bottom:.35rem}
+.block{border-top:3px solid var(--forest);padding-top:1rem;margin-top:2.25rem;max-width:50rem}
+.block h2{font-size:1.5rem}
+
+.hours{border-collapse:collapse;width:100%;max-width:28rem;margin:0 0 1.25rem}
+.hours caption{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hours th,.hours td{padding:.45rem 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
+.hours th{font-weight:600;padding-right:1rem}
+.hours td{text-align:right}
+
+.anim{border-left:6px solid var(--forest);padding:.25rem 0 .25rem 1rem;margin:0 0 1.5rem;max-width:50rem}
+.anim h3{margin-bottom:.3em}
+.when{font-family:var(--mono);font-weight:700;margin:0 0 .25rem}
+
+.rating{font-family:var(--mono);font-size:clamp(2.2rem,8vw,3.4rem);font-weight:700;line-height:1;margin:0 0 .5rem}
+
+.people{display:grid;gap:2.5rem;margin-top:1.5rem}
+@media (min-width:760px){.people{grid-template-columns:repeat(2,1fr)}}
+.person h3{margin-top:1rem;margin-bottom:.15em}
+.role{font-family:var(--mono);font-weight:600;margin-bottom:.5rem}
+
+.gallery{display:grid;gap:1rem;margin-top:1.5rem}
+@media (min-width:700px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.gallery img,.person img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+.ph{margin:0;aspect-ratio:4/3;background:var(--mint);border:2px dashed var(--leaf);display:grid;place-items:center;text-align:center;padding:1rem;color:var(--muted);font-family:var(--mono);font-size:.9rem;border-radius:4px}
+.sec--tint .ph{background:var(--paper)}
+
+.qa{display:grid;gap:1.75rem;max-width:48rem}
+.qa h3{margin-bottom:.35em}
+.qa p{margin-bottom:0}
+
+.map{background:var(--mint);border:2px solid var(--forest);min-height:20rem;padding:1.25rem;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:.75rem;border-radius:4px}
+.map:has(iframe){padding:0;display:block}
+.map iframe{display:block;width:100%;height:24rem;border:0}
+.map p{margin:0}
+
+mark.todo{background:#fff3a0;color:#4a3b00;padding:0 .25em;border-radius:2px}
+
+/* Pied de page */
+.foot{background:var(--forest);color:#eef6dc;padding:3rem 0 2rem}
+.foot a{color:var(--lime)}
+.foot a:hover{background:var(--lime);color:var(--forest)}
+.foot__grid{display:grid;gap:2rem}
+@media (min-width:800px){.foot__grid{grid-template-columns:1.3fr 1fr 1fr 1fr}}
+.foot h2{font-size:1rem;color:#fff;margin-bottom:.6em}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{margin:.3rem 0}
+.foot p{margin-bottom:.5em}
+.legal{margin-top:2rem;padding-top:1rem;border-top:1px solid #355645;font-size:.9rem}
+
+/* Barre d'actions mobile */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:repeat(3,1fr);background:var(--forest);border-top:3px solid var(--lime)}
+.dock a{color:var(--lime);font-family:var(--mono);font-weight:700;text-align:center;text-decoration:none;padding:.95rem .25rem;font-size:.95rem}
+.dock a:hover{background:var(--lime);color:var(--forest)}
+@media (min-width:900px){.dock{display:none}}
