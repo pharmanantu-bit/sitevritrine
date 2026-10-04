@@ -8,6 +8,12 @@ Site statique (HTML/CSS, aucun framework, aucun cookie), généré par `build.py
 3. Lancer `python3 build.py` : le dossier `dist/` contient le site.
 4. Envoyer le contenu de `dist/` à la racine de l'hébergement (OVH, Netlify, Cloudflare Pages, etc.). Le site doit être servi à la racine du domaine.
 
+## Aperçu en ligne (GitHub Pages)
+À chaque modification envoyée sur GitHub, le site est regénéré et publié automatiquement sur
+https://pharmanantu-bit.github.io/sitevritrine/ (workflow `.github/workflows/pages.yml`).
+Cet aperçu n'est pas référencé par Google (balise noindex) tant que le vrai domaine n'est pas en place.
+À activer une seule fois : sur GitHub, Settings → Pages → Source : « GitHub Actions ».
+
 Aperçu local : `python3 -m http.server -d dist 8000` puis http://localhost:8000
 
 ## Photos

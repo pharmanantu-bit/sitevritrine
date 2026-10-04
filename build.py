@@ -10,7 +10,9 @@ les dimanches de garde dans data/gardes.json, les photos dans assets/photos/.
 import datetime
 import html
 import json
+import os
 import pathlib
+import re
 import shutil
 import zoneinfo
 
@@ -19,6 +21,11 @@ DIST = ROOT / "dist"
 
 # ------------------------------------------------------------------ À ADAPTER
 DOMAIN = "https://www.VOTRE-DOMAINE.fr"      # remplacer par l'adresse réelle du site, puis relancer build.py
+# ---------------------------------------------------------------------------
+# Réglages utilisés par la mise en ligne automatique (GitHub Pages) : inutile d'y toucher.
+DOMAIN = os.environ.get("SITE_DOMAIN", DOMAIN).rstrip("/")
+BASE = os.environ.get("SITE_BASE", "").rstrip("/")     # ex. "/sitevritrine" si le site n'est pas à la racine
+NOINDEX = os.environ.get("SITE_NOINDEX") == "1"        # site d'aperçu : non référencé par les moteurs
 # ---------------------------------------------------------------------------
 
 TODAY = datetime.date.today()
@@ -385,7 +392,7 @@ def render(slug, title, desc, body, extra_graph=None, crumb=None, home=False):
 '''
     out = DIST / ("index.html" if slug == "" else f"{slug}/index.html")
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(page, encoding="utf-8")
+    out.write_text(rebase(page), encoding="utf-8")
     PAGES.append((slug, title, "1.0" if slug == "" else "0.8"))
 
 
@@ -752,7 +759,18 @@ N° de licence de l'officine : {todo("n° de licence ou FINESS de l'officine")}.
 
 
 # ------------------------------------------------------------------ fichiers techniques
+def rebase(text):
+    """Préfixe les liens internes (/...) par BASE quand le site n'est pas servi à la racine du domaine."""
+    if NOINDEX:
+        text = text.replace("<head>", '<head><meta name="robots" content="noindex">', 1)
+    if not BASE:
+        return text
+    return re.sub(r'((?:href|src)=")/(?!/)', rf"\1{BASE}/", text)
+
+
 def write(rel, text):
+    if rel.endswith(".html"):
+        text = rebase(text)
     p = DIST / rel
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text, encoding="utf-8")
@@ -772,6 +790,8 @@ def technical_files():
               "User-agent: *\nAllow: /\n\n"
               + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots)
               + f"Sitemap: {DOMAIN}/sitemap.xml\n")
+    if NOINDEX:
+        robots = "# Site d'aperçu : non référencé par les moteurs de recherche.\nUser-agent: *\nDisallow: /\n"
     write("robots.txt", robots)
 
     g = gardes()
